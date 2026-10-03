@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: customers
+    description: One row per customer, enriched with nation and region.
+    columns:
+      - name: customer_key
+        description: Primary key. Unique customer identifier.
+        tests:
+          - not_null
+          - unique
+      - name: customer_name
+        description: Customer name.
+        tests:
+          - not_null
+
+  - name: orders_summary
+    description: One row per order with line-item totals (quantity, price, net and charged price).
+    columns:
+      - name: order_key
+        description: Primary key. Unique order identifier.
+        tests:
+          - not_null
+          - unique
+      - name: customer_key
+        description: Customer who placed the order.
+        tests:
+          - not_null
+      - name: order_date
+        description: Date the order was placed.
+        tests:
+          - not_null
+
+  - name: supplier_performance
+    description: One row per supplier with total orders, total revenue (net of discount) and average discount.
+    columns:
+      - name: supplier_key
+        description: Primary key. Unique supplier identifier.
+        tests:
+          - not_null
+          - unique
+      - name: supplier_name
+        description: Supplier name.
+        tests:
+          - not_null
